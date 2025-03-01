@@ -1,6 +1,6 @@
 # Talos cluster config
 
-Generating machine config file:
+Generating machine config:
 
 ```bash
 talosctl gen config \
