@@ -1,0 +1,48 @@
+# This file contains the modifications to the original machine config file
+
+machine:
+  kubelet:
+    extraMounts:
+      # Longhorn config
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  network:
+    interfaces:
+      - interface: ens18
+        # deviceSelector:
+        #   busPath: "0*" # auto select the only one available
+        dhcp: true
+        vip:
+          ip: 192.168.1.27
+
+  install:
+    # Talos image with iSCSI support
+    image: factory.talos.dev/installer/c9078f9419961640c712a8bf2bb9174933dfcf1da383fd8ea2b7dc21493f8bac:v1.9.4
+
+cluster:
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1alpha1
+          defaults:
+            audit: privileged
+            audit-version: latest
+            enforce: privileged
+            enforce-version: latest
+            warn: privileged
+            warn-version: latest
+          exemptions:
+            namespaces:
+              - kube-system
+            runtimeClasses: []
+            usernames: []
+          kind: PodSecurityConfiguration
+  discovery:
+    enabled: false
+  allowSchedulingOnControlPlanes: true
