@@ -4,8 +4,9 @@ Generating machine config:
 
 ```bash
 talosctl gen config \
-  --with-secrets ../secrets.yaml \
+  --with-secrets secrets.yaml \
   --config-patch-control-plane @controlplane-patch.yml \
+  --output-types controlplane,talosconfig \
   talos https://192.168.1.27:6443
 ```
 
