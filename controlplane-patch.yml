@@ -36,3 +36,8 @@ cluster:
             audit: privileged
             enforce: privileged
             warn: privileged
+  # Fix for allowing nodeport access from any interface, not just tailscale
+  # https://github.com/siderolabs/talos/discussions/9577#discussioncomment-11060186
+  proxy:
+    extraArgs:
+      nodeport-addresses: 0.0.0.0/0
