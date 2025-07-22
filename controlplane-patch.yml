@@ -1,28 +1,34 @@
 machine:
+  certSANs:
+    - 100.90.240.38 # Tailscale
   kubelet:
     extraArgs:
       rotate-server-certificates: true # for the metrics server
     extraMounts:
-      - destination: /var/lib/longhorn # Longhorn config
-        type: bind
-        source: /var/lib/longhorn
-        options:
-          - bind
-          - rshared
-          - rw
-  network:
-    interfaces:
-      - interface: ens18
-        dhcp: true
-        vip:
-          ip: 192.168.1.27
+      # Longhorn (unused for now)
+      # - destination: /var/lib/longhorn
+      #   type: bind
+      #   source: /var/lib/longhorn
+      #   options:
+      #     - bind
+      #     - rshared
+      #     - rw
+
+  # network:
+  #   interfaces:
+  #     - interface: ens18
+  #       dhcp: true
+  #       vip:
+  #         ip: 192.168.1.27
 
   install:
-    image: factory.talos.dev/installer/c9078f9419961640c712a8bf2bb9174933dfcf1da383fd8ea2b7dc21493f8bac:v1.9.5 # Talos image with iSCSI support
+    image: factory.talos.dev/metal-installer/e2e3b54334c85fdef4d78e88f880d185e0ce0ba0c9b5861bb5daa1cd6574db9b:v1.10.5 # Talos image with iSCSI support and Tailscale
 
 cluster:
   allowSchedulingOnControlPlanes: true
   apiServer:
+    certSANs:
+      - 100.90.240.38 # Tailscale
     admissionControl:
       - name: PodSecurity
         configuration:

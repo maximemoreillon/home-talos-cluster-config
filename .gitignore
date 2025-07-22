@@ -2,3 +2,4 @@ secrets.*
 controlplane.yaml
 worker.yaml
 talosconfig
+tailscale.patch.yaml
