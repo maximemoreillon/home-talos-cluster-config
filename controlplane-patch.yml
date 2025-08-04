@@ -4,15 +4,15 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true # for the metrics server
-    extraMounts:
-      # Longhorn (unused for now)
-      # - destination: /var/lib/longhorn
-      #   type: bind
-      #   source: /var/lib/longhorn
-      #   options:
-      #     - bind
-      #     - rshared
-      #     - rw
+    # extraMounts:
+    # Longhorn (unused for now)
+    # - destination: /var/lib/longhorn
+    #   type: bind
+    #   source: /var/lib/longhorn
+    #   options:
+    #     - bind
+    #     - rshared
+    #     - rw
 
   # network:
   #   interfaces:
