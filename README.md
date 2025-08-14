@@ -1,5 +1,11 @@
 # Talos cluster config
 
+## Generating secrets
+
+```
+talosctl gen secrets -o secrets.yaml
+```
+
 ## Generating machine config
 
 ```bash
@@ -9,6 +15,8 @@ talosctl gen config \
   --output-types controlplane \
   talos https://192.168.1.6:6443
 ```
+
+NOTE: Would have been better to name the cluster "home"
 
 ## Applying configuration
 
