@@ -30,6 +30,12 @@ talosctl apply-config -f ./controlplane.yaml
 talosctl apply-config -f ./controlplane.yaml -p @tailscale.patch.yaml
 ```
 
+## Applying patches without ful config
+
+```bash
+talosctl patch mc --patch @tailscale.patch.yaml
+```
+
 ## References
 
 - https://www.talos.dev/v1.9/introduction/prodnotes/
